@@ -9,6 +9,7 @@ $AppFile = Get-Content -Path .\Apps.txt
 $AppFile | ForEach-Object {
     $AppsString += $_
 }
+Remove-Item .\Apps.txt
 $AppsString = $AppsString -split " "
 $MyAppsList | ForEach-Object {
     if ($_ -in $AppsString) {
