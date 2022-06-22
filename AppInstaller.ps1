@@ -48,24 +48,27 @@ $Cat_Names = "Browsers", "Communication", "Development", "Media", "Gaming", "Net
 
 $Final_Selection = @()
 $i=0
+Write-Host "Select Apps from each category that you would like to install.`nLeave empty to skip."
 foreach ($Set in $Apps) {
     "`n"
     $Cat_Names[$i]
-    "=================="
+    "====================="
     #Print App and Number pairs to console
     $Set | ForEach-Object {
         Write-Host $_[1], ".", $_[0] -BackgroundColor DarkGreen -ForegroundColor White
     }
     "`n" 
-    $AppNumbers = Read-Host "Enter App Numbers separated by commas or spaces: " 
+    $AppNumbers = Read-Host "Enter App Numbers separated by spaces: " 
     $AppNumbers -split " " | ForEach-Object {
         $Final_Selection += ($Set[$_-1][0])
     }
     $i += 1
 }
-Write-Host "Finished Selection...`nThese are your selected apps:" -BackgroundColor DarkRed -ForegroundColor White
-Write-Host  $Final_Selection -Separator "`n" -BackgroundColor DarkBlue -ForegroundColor White
-if (Read-Host "Proceed? Y/n" == "n") {
+Write-Host "`n====================="
+Write-Host "Finished Selection..."
+Write-Host "These are your selected apps:" -BackgroundColor DarkRed -ForegroundColor White
+Write-Host  $Final_Selection -Separator "`n"
+if (Read-Host "`nProceed? Y/n" == "n") {
     Exit-PSSession
 } 
 else {
